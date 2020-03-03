@@ -29,5 +29,7 @@ pin_run_as_build:
     max_pin: x.x
 root_base:
 - 6.18.04
+root_binaries:
+- 6.18.04
 zlib:
 - '1.2'
