@@ -34,7 +34,7 @@ requirements:
     - fftw
     - gsl
     - hdf5
-    - libframe
+    - libframel
     - root_base
     - root-binaries
     - zlib  # [osx]
@@ -42,7 +42,7 @@ requirements:
     - fftw
     - gsl
     - hdf5
-    - libframe
+    - libframel
     - root_base
     - zlib  # [osx]
 
