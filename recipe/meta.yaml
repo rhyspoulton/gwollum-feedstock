@@ -38,14 +38,12 @@ requirements:
     - libframel
     - root_base
     - root-binaries
-    - zlib  # [osx]
   run:
     - fftw
     - gsl
     - hdf5
     - libframel
     - root_base
-    - zlib  # [osx]
 
 test:
   requires:
