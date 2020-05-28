@@ -1,0 +1,16 @@
+Index: src/Streams/CMakeLists.txt
+===================================================================
+diff --git a/GWOLLUM/trunk/src/Streams/CMakeLists.txt b/GWOLLUM/trunk/src/Streams/CMakeLists.txt
+--- a/GWOLLUM/trunk/src/Streams/CMakeLists.txt	(revision 83816)
++++ b/GWOLLUM/trunk/src/Streams/CMakeLists.txt	(working copy)
+@@ -46,8 +46,8 @@
+   Time
+   RootUtils
+   Segments
+-  ${GSL_LIBRARIES}
+-  Frame
++  ${GSL_LIBRARY}
++  ${FRAMEL_LIBRARIES}
+   )
+ set_target_properties(
+   Streams PROPERTIES
