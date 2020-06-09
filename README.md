@@ -1,7 +1,7 @@
 About gwollum
 =============
 
-Home: http://virgo.in2p3.fr/GWOLLUM/v2r3/index.html?Main
+Home: http://virgo.in2p3.fr/GWOLLUM/v2r4/index.html?Main
 
 Package license: GPL-3.0-or-later
 

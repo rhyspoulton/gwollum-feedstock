@@ -1,24 +1,25 @@
 {% set name = "gwollum" %}
-{% set version = "2.3.12" %}
+{% set version = "2.4.0" %}
 {% set versions = version.split('.') %}
 
 package:
-   name: "{{ name|lower }}"
-   version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-   url: "http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.xz"
-   sha256: 4416c3ccd18e37f9de00fc29a0dff0c25fc9fd511e542611b25c642fac882edc
-   patches:
-     # use C++17 standard (required to link against ROOT>=6.14)
-     - c++17.patch
-     # link only against libgsl, not libgslcblas
-     - gsl-library.patch
+  url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.xz
+  sha256: 834f80130f238762f9c9e287d4389e61fb5cf89634f0930b6bc1b9cd6df7d259
+  patches:
+    # use C++17 standard (required to link against ROOT>=6.14)
+    - c++17.patch
+    # update links
+    - streams-libraries.patch
+    - triggers-libraries.patch
 
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 5
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("gwollum", max_pin="x.x.x") }}
@@ -34,17 +35,15 @@ requirements:
     - fftw
     - gsl
     - hdf5
-    - libframe
+    - libframel
     - root_base
     - root-binaries
-    - zlib  # [osx]
   run:
     - fftw
     - gsl
     - hdf5
-    - libframe
+    - libframel
     - root_base
-    - zlib  # [osx]
 
 test:
   requires:
@@ -57,11 +56,11 @@ test:
     - test "$(pkg-config --print-errors --modversion gwollum)" == "${PKG_VERSION}"  # [unix]
 
 about:
-  home: "http://virgo.in2p3.fr/GWOLLUM/v{{ versions[0] }}r{{ versions[1] }}/index.html?Main"
-  license: "GPL-3.0-or-later"
-  license_family: "GPL"
-  license_file: "LICENSE"
-  summary: "Tools for gravitational-wave analyses"
+  home: http://virgo.in2p3.fr/GWOLLUM/v{{ versions[0] }}r{{ versions[1] }}/index.html?Main
+  license: GPL-3.0-or-later
+  license_family: GPL
+  license_file: LICENSE
+  summary: Tools for gravitational-wave analyses
   description: |
     The GWOLLUM package contains a set of software tools designed to perform
     GW analyses.  Most of the code source is written with the C++ language

@@ -25,9 +25,5 @@ macos_min_version:
 pin_run_as_build:
   fftw:
     max_pin: x
-  zlib:
-    max_pin: x.x
 root_base:
-- 6.20.2
-zlib:
-- '1.2'
+- '6.20'
