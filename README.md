@@ -1,13 +1,17 @@
 About gwollum
 =============
 
-Home: http://virgo.in2p3.fr/GWOLLUM/v2r4/index.html?Main
+Home: https://virgo.docs.ligo.org/virgoapp/gwollum/
 
 Package license: GPL-3.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gwollum-feedstock/blob/master/LICENSE.txt)
 
 Summary: Tools for gravitational-wave analyses
+
+Development: https://git.ligo.org/virgo/virgoapp/gwollum.git
+
+Documentation: https://virgo.docs.ligo.org/virgoapp/gwollum/
 
 The GWOLLUM package contains a set of software tools designed to perform
 GW analyses.  Most of the code source is written with the C++ language
