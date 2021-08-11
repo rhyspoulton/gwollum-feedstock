@@ -1,5 +1,5 @@
 {% set name = "gwollum" %}
-{% set version = "2.4.2" %}
+{% set version = "3.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://git.ligo.org/virgo/virgoapp/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 53c5b38d856ad55656068235a8e755f22a285124f9a7bd13495ce8e3f9345134
+  sha256: c946211f712fa359058f824fd2c5094857152d7cff27de7929dcd97bf64cb6f2
   patches:
     # use C++17 standard (required to link against ROOT>=6.14)
     - c++17.patch
@@ -17,7 +17,7 @@ source:
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 2
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("gwollum", max_pin="x.x.x") }}
