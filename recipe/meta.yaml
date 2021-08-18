@@ -29,13 +29,11 @@ requirements:
     - pkg-config  # [unix]
   host:
     - fftw
-    - gsl
     - hdf5
     - libframel >=8.40.5
     - root_base
   run:
     - fftw
-    - gsl
     - hdf5
     - libframel
     - root_base
@@ -46,9 +44,8 @@ test:
   requires:
     - pkg-config
   commands:
-    # sanity check
-    - echo -e "1 2 3\n4 5 6" > triggers.txt
-    - TxtToTree triggers.txt triggers a/I:b/I:c/I
+    # run test commands
+    - for gwltest in ${PREFIX}/sbin/gwl-test-*; do ${gwltest}; done
     # check pkg-config
     - pkg-config --print-errors --exact-version {{ version }} {{ name }}
 
@@ -68,3 +65,4 @@ about:
 extra:
   recipe-maintainers:
     - duncanmmacleod
+    - rhyspoulton
