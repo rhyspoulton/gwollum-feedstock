@@ -16,8 +16,6 @@ docker_image:
 - quay.io/condaforge/linux-anvil-comp7
 fftw:
 - '3'
-gsl:
-- '2.6'
 hdf5:
 - 1.10.6
 pin_run_as_build:
