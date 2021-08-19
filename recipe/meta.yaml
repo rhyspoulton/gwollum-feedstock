@@ -1,5 +1,5 @@
 {% set name = "gwollum" %}
-{% set version = "2.4.2" %}
+{% set version = "3.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,17 +7,17 @@ package:
 
 source:
   url: https://git.ligo.org/virgo/virgoapp/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 53c5b38d856ad55656068235a8e755f22a285124f9a7bd13495ce8e3f9345134
+  sha256: c946211f712fa359058f824fd2c5094857152d7cff27de7929dcd97bf64cb6f2
   patches:
-    # use C++17 standard (required to link against ROOT>=6.14)
-    - c++17.patch
-    # update links
-    - gsl-no-cblas.patch
+    # fix https://git.ligo.org/virgo/virgoapp/GWOLLUM/-/issues/11
+    - utils-links.patch
+    # fix https://git.ligo.org/virgo/virgoapp/GWOLLUM/-/issues/12
+    - inject-links.patch
 
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 2
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("gwollum", max_pin="x.x.x") }}
@@ -26,19 +26,16 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - cmake >=3.9.0
+    - cmake >=3.12.0
     - make  # [unix]
     - pkg-config  # [unix]
   host:
     - fftw
-    - gsl
     - hdf5
     - libframel >=8.40.5
     - root_base
-    - root-binaries
   run:
     - fftw
-    - gsl
     - hdf5
     - libframel
     - root_base
@@ -49,11 +46,10 @@ test:
   requires:
     - pkg-config
   commands:
-    # sanity check
-    - echo -e "1 2 3\n4 5 6" > triggers.txt
-    - TxtToTree triggers.txt triggers a/I:b/I:c/I
+    # run test commands
+    - for gwltest in ${PREFIX}/sbin/gwl-test-*; do ${gwltest}; done
     # check pkg-config
-    - test "$(pkg-config --print-errors --modversion gwollum)" == "${PKG_VERSION}"  # [unix]
+    - pkg-config --print-errors --exact-version {{ version }} {{ name }}
 
 about:
   home: https://virgo.docs.ligo.org/virgoapp/{{ name }}/
@@ -71,3 +67,4 @@ about:
 extra:
   recipe-maintainers:
     - duncanmmacleod
+    - rhyspoulton

@@ -1,0 +1,17 @@
+diff --git a/src/Inject/CMakeLists.txt b/src/Inject/CMakeLists.txt
+index 471678c..241f023 100644
+--- a/src/Inject/CMakeLists.txt
++++ b/src/Inject/CMakeLists.txt
+@@ -46,7 +46,11 @@ target_include_directories(
+   )
+ target_link_libraries(
+   Inject
+-  #Coinc
++  CUtils
++  RootUtils
++  Streams
++  Time
++  ${ROOT_Core_LIBRARY}
+   ${ROOT_MathCore_LIBRARY}
+   )
+ set_target_properties(

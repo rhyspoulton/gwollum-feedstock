@@ -71,6 +71,7 @@ Installing `gwollum` from the `conda-forge` channel can be achieved by adding `c
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `gwollum` can be installed with:
@@ -150,4 +151,5 @@ Feedstock Maintainers
 =====================
 
 * [@duncanmmacleod](https://github.com/duncanmmacleod/)
+* [@rhyspoulton](https://github.com/rhyspoulton/)
 
