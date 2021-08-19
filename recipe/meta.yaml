@@ -9,8 +9,10 @@ source:
   url: https://git.ligo.org/virgo/virgoapp/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: c946211f712fa359058f824fd2c5094857152d7cff27de7929dcd97bf64cb6f2
   patches:
-    # fix https://git.ligo.org/virgo/virgoapp/GWOLLUM/-/issues/9
-    - streams-links.patch
+    # fix https://git.ligo.org/virgo/virgoapp/GWOLLUM/-/issues/11
+    - utils-links.patch
+    # fix https://git.ligo.org/virgo/virgoapp/GWOLLUM/-/issues/12
+    - inject-links.patch
 
 build:
   error_overdepending: true
