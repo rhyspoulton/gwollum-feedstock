@@ -1,5 +1,5 @@
 {% set name = "gwollum" %}
-{% set version = "3.0.0" %}
+{% set version = "3.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://git.ligo.org/virgo/virgoapp/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c946211f712fa359058f824fd2c5094857152d7cff27de7929dcd97bf64cb6f2
+  sha256: 6ab020f71fecaf53eb909e498ced047996cc5d1d7541c7333ae2cac696fee54b
   patches:
     # fix https://git.ligo.org/virgo/virgoapp/GWOLLUM/-/issues/11
     - utils-links.patch
@@ -17,7 +17,7 @@ source:
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 4
+  number: 0
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("gwollum", max_pin="x.x.x") }}
