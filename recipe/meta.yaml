@@ -8,11 +8,6 @@ package:
 source:
   url: https://git.ligo.org/virgo/virgoapp/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 6ab020f71fecaf53eb909e498ced047996cc5d1d7541c7333ae2cac696fee54b
-  patches:
-    # fix https://git.ligo.org/virgo/virgoapp/GWOLLUM/-/issues/11
-    - utils-links.patch
-    # fix https://git.ligo.org/virgo/virgoapp/GWOLLUM/-/issues/12
-    - inject-links.patch
 
 build:
   error_overdepending: true
