@@ -13,10 +13,10 @@ cmake \
 ;
 
 # build
-cmake --build . --parallel ${CPU_COUNT}
+cmake --build . --parallel ${CPU_COUNT} --verbose
 
 # install
-cmake --build . --parallel ${CPU_COUNT} --target install
+cmake --build . --parallel ${CPU_COUNT} --verbose --target install
 
 # -- build activate script
 
