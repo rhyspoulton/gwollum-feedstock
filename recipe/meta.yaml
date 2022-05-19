@@ -13,6 +13,8 @@ source:
     - doc-images.patch
     # https://git.ligo.org/virgo/virgoapp/GWOLLUM/-/commit/19449b39742b449ecae5392f9142667c3827d9a5
     - data-install-path.patch
+    # fix rootcling when cross-compiling
+    - rootcling-cross.patch  # [build_platform != target_platform]
 
 build:
   error_overdepending: true
@@ -30,6 +32,8 @@ requirements:
     - make  # [unix]
     - pkg-config  # [unix]
     - sysroot_linux-64 2.17  # [linux64]
+    # when cross-compiling, need rootcling from build_platform
+    - root_base  # [build_platform != target_platform]
   host:
     - fftw
     - hdf5
