@@ -1,0 +1,70 @@
+From d840f5c167d253143bc2718773e3e6529cb99120 Mon Sep 17 00:00:00 2001
+From: Duncan Macleod <duncan.macleod@ligo.org>
+Date: Wed, 9 Feb 2022 16:59:29 +0000
+Subject: [PATCH] doc: decouple doxygen and images
+
+- don't copy the images into the binary_dir, just copy them directly from the source_dir, and do this independently of whether doxygen was found
+- write the Doxyfile into the binary_dir, keeping the source_dir clean
+- install the docs into `${prefix}/share/doc/GWOLLUM/` (not `{prefix}/share/doc/GWOLLUM/html/`)
+---
+ doc/CMakeLists.txt | 34 +++++++++++-----------------------
+ 1 file changed, 11 insertions(+), 23 deletions(-)
+
+diff --git a/doc/CMakeLists.txt b/doc/CMakeLists.txt
+index f8dc8ce..6a43999 100644
+--- a/doc/CMakeLists.txt
++++ b/doc/CMakeLists.txt
+@@ -4,21 +4,12 @@ find_package(Doxygen)
+ 
+ if (DOXYGEN_FOUND)
+   # set input and output files
+-  set(DOXYGEN_IN ./Doxyfile.in)
+-  set(DOXYGEN_OUT ./Doxyfile)
+-  
++  set(DOXYGEN_IN Doxyfile.in)
++  set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
++
+   # request to configure the file
+   configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+-  message("Doxygen build started")
+ 
+-  # copy auxiliary files
+-  file(
+-    COPY
+-    ./images
+-    ./main.dox
+-    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
+-    )
+-  
+   # note the option ALL which allows to build the docs together with the application
+   add_custom_target(doc_doxygen ALL
+     COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+@@ -30,17 +21,14 @@ if (DOXYGEN_FOUND)
+   # install doxygen
+   install(
+     DIRECTORY
+-    ${CMAKE_CURRENT_BINARY_DIR}/html
++    ${CMAKE_CURRENT_BINARY_DIR}/html/
+     DESTINATION ${CMAKE_INSTALL_DOCDIR}
+     )
+-  
+-  # install images
+-  install(
+-    DIRECTORY
+-    images
+-    DESTINATION ${CMAKE_INSTALL_DATADIR}
+-    )
+-  
+-else (DOXYGEN_FOUND)
+-  message("Doxygen need to be installed to generate the doxygen documentation")
+ endif (DOXYGEN_FOUND)
++
++# install images
++install(
++  DIRECTORY
++  images
++  DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}
++  )
+-- 
+GitLab
+

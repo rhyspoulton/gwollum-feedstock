@@ -1,0 +1,25 @@
+From 19449b39742b449ecae5392f9142667c3827d9a5 Mon Sep 17 00:00:00 2001
+From: Duncan Macleod <duncan.macleod@ligo.org>
+Date: Wed, 9 Feb 2022 17:01:59 +0000
+Subject: [PATCH] data: install the GWF file into a GWOLLUM path
+
+to `${prefix}/share/GWOLLUM/data/`, not just `${prefix}/share/data/`
+---
+ data/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/data/CMakeLists.txt b/data/CMakeLists.txt
+index 73fdc5a..b4cc546 100644
+--- a/data/CMakeLists.txt
++++ b/data/CMakeLists.txt
+@@ -3,6 +3,6 @@
+ install(
+   FILES
+   V1-hrec-vsr2.gwf
+-  DESTINATION ${CMAKE_INSTALL_DATADIR}/data
++  DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/data
+   )
+  
+-- 
+GitLab
+
