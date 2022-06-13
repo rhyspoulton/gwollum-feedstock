@@ -15,3 +15,4 @@ if [ ! -z "${CONDA_BACKUP_GWOLLUM_PIX}" ]; then
 	unset CONDA_BACKUP_GWOLLUM_PIX
 else
 	unset GWOLLUM_PIX
+fi
