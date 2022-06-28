@@ -47,8 +47,6 @@ test:
   requires:
     - pkg-config
   commands:
-    # run test commands
-    - for gwltest in ${PREFIX}/sbin/gwl-test-*; do ${gwltest}; done  # [linux]
     # check variables
     - test -f ${GWOLLUM_DATA}/V1-hrec-vsr2.gwf  # [unix]
     - test -f ${GWOLLUM_PIX}/gwollum.gif  # [unix]
