@@ -15,7 +15,7 @@ source:
 build:
   error_overdepending: true
   error_overlinking: true
-  number: 0
+  number: 1
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage("gwollum", max_pin="x.x.x") }}
@@ -47,8 +47,6 @@ test:
   requires:
     - pkg-config
   commands:
-    # run test commands
-    - for gwltest in ${PREFIX}/sbin/gwl-test-*; do ${gwltest}; done  # [linux]
     # check variables
     - test -f ${GWOLLUM_DATA}/V1-hrec-vsr2.gwf  # [unix]
     - test -f ${GWOLLUM_PIX}/gwollum.gif  # [unix]
